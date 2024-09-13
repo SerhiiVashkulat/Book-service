@@ -24,7 +24,7 @@ Book Service API is a RESTful API for managing a collection of books. It support
 
 1. **Clone the repository:**
   
-   git clone https://github.com/your-username/book-service-api.git
+   git clone https://github.com/SerhiiVashkulat/Book-service.git
    
    mvn clean install
 
