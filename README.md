@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Book Service API
 
 ## Description
@@ -94,3 +95,6 @@ GET api/v1/books/filter?author={author}&title={title}&genre={genre}
 
 Response: Returns a list of books matching the specified filters.
 
+=======
+# Book-service
+>>>>>>> master
