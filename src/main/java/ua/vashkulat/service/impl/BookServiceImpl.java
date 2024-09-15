@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.vashkulat.dto.request.CreateBookDto;
 import ua.vashkulat.dto.request.UpdateBookDto;
 import ua.vashkulat.dto.response.BookDto;
@@ -26,12 +27,14 @@ public class BookServiceImpl implements BookService {
 	private final BookMapper mapper = BookMapper.mapper;
 
 	@Override
+	@Transactional(readOnly = true)
 	public BookDto getById(Long id) {
 		log.info("Fetching book with id: {}", id);
 		return mapper.toDto(findBookById(id));
 	}
 
 	@Override
+	@Transactional
 	public BookDto create(CreateBookDto bookDto) {
 		log.info("Fetching book with ISBN: {}", bookDto.ISBN());
 		existsBookByISBN(bookDto.ISBN());
@@ -41,6 +44,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<BookDto> getAll(int page, int size) {
 		log.info("Fetching all books, page: {}, size: {}", page, size);
 		Pageable pageable = PageRequest.of(page, size);
@@ -50,6 +54,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public BookDto updateById(Long id, UpdateBookDto updatedData) {
 		log.info("Updating book with id: {}", id);
 		Book updatedBook = findBookById(id);
@@ -66,6 +71,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Long id) {
 		log.info("Deleting book with id: {}", id);
 		Book deletedBook = findBookById(id);
@@ -73,6 +79,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<BookDto> getByFilter(String author, String title, String genre) {
 		log.info("Fetching books with filter - Author: {}, Title: {}, Genre: {}", author, title, genre);
 		List<Book> booksByFilter = repository.searchBooksByFilter(author, title, genre);

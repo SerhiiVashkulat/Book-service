@@ -150,7 +150,7 @@ class BookServiceTest {
 	}
 
 	@Test
-	void givenValidFilter_whenGetByFilter_shouldReturnListOfBooks() {
+	void givenValidFilter_getByFilter_shouldReturnListOfBooks() {
 		String author = "scott Fitzgerald";
 		String title = "reat Gatsby";
 		String genre = null;
@@ -167,7 +167,7 @@ class BookServiceTest {
 	}
 
 	@Test
-	void givenNoMatchingBooks_whenGetByFilter_shouldThrowBookNotFoundException() {
+	void givenNoMatchingBooks_getByFilter_shouldThrowException() {
 
 		String author = "Unknown Author";
 		String title = "Unknown Title";

@@ -3,7 +3,6 @@ package ua.vashkulat.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
 import ua.vashkulat.entity.Book;
 
 import java.time.LocalDate;
@@ -17,7 +16,7 @@ class BookRepositoryTest {
 	private BookRepository repository;
 
 	@Test
-	void existsByISBN() {
+	void givenExistingISBN_sexistsByISBN_shouldReturnTrue() {
 		String existingISBN = "9780743273565";
 		Book book = new Book(1L, "The Great Gatsby", "F. Scott Fitzgerald", "Fiction", LocalDate.parse("1925-04-10"), "9780743273565");
 		repository.save(book);
@@ -26,7 +25,7 @@ class BookRepositoryTest {
 	}
 
 	@Test
-	void searchBooksByFilter() {
+	void givenFiltersParam_searchBooksByFilter_shouldReturnListBooks() {
 		String titleFilter = "gats";
 		String authorFilter = "fitzge";
 		String genreFilter = null;
